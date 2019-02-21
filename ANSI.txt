@@ -1,0 +1,10 @@
+Об'єднання символів
+Не всі символи повинні призводити до того, що на екрані буде намальовано один символ.
+Символ з акцентуванням може бути представлений у вигляді символу без акценту, а потім акцентованого комбінованого символу. 
+Деякі системи графічного інтерфейсу підтримуватимуть комбінування символів, деякі не - і вплив на вашу програму буде залежати від того, які припущення ви робите.
+
+Combining characters
+Not all characters should result in a single character being drawn on the screen. 
+An accented character can be represented as the unaccented character followed by the accented combining character. 
+Some GUI systems will support combining characters, some won't - and the impact on your application will depend on what assumptions you're making.
+
