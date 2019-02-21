@@ -11,9 +11,9 @@ using System.IO;
 
 namespace TextReader
 {
-    public partial class Form1 : Form
+    public partial class Text : Form
     {
-        public Form1()
+        public Text()
         {
             InitializeComponent();
         }
@@ -29,21 +29,6 @@ namespace TextReader
             if(openFile.ShowDialog()==DialogResult.OK)
             {
                 richTextBox1.Text = File.ReadAllText(openFile.FileName);
-            }
-        }
-
-        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.DefaultExt = "*.txt";
-            saveFile.Filter = "Text files|*.txt";
-            if(saveFile.ShowDialog()== DialogResult.OK&&saveFile.FileName.Length>0)
-            {
-                using (StreamWriter sw = new StreamWriter(saveFile.FileName,true))
-                {
-                    sw.WriteLine(richTextBox1.Text);
-                    sw.Close();
-                }
             }
         }
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -123,6 +108,34 @@ namespace TextReader
             byte[] unicodeBytes = unicode.GetBytes(read.text);
             String str1 = Encoding.Unicode.GetString(unicodeBytes);
             richTextBox1.Text = str1;
+        }
+        private void saveInUnicodeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.DefaultExt = "*.txt";
+            saveFile.Filter = "Text files|*.txt";
+            if (saveFile.ShowDialog() == DialogResult.OK && saveFile.FileName.Length > 0)
+            {
+                using (StreamWriter sw = new StreamWriter(saveFile.FileName, true, Encoding.Unicode))
+                {
+                    sw.WriteLine(richTextBox1.Text);
+                    sw.Close();
+                }
+            }
+        }
+        private void saveInANSIToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.DefaultExt = "*.txt";
+            saveFile.Filter = "Text files|*.txt";
+            if (saveFile.ShowDialog() == DialogResult.OK && saveFile.FileName.Length > 0)
+            {
+                using (StreamWriter sw = new StreamWriter(saveFile.FileName, true))
+                {
+                    sw.WriteLine(richTextBox1.Text);
+                    sw.Close();
+                }
+            }
         }
     }
 }
